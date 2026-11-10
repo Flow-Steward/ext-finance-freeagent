@@ -1,0 +1,14 @@
+{
+  "page_id": "setup-guide",
+  "title": "FreeAgent setup",
+  "description": "Register a FreeAgent API app, save its credentials and connect a company.",
+  "project_scoped": true,
+  "components": [
+    {
+      "component_id": "freeagent_setup",
+      "type": "markdown",
+      "title": "Connect your FreeAgent company",
+      "body": "FreeAgent connects through your own FreeAgent API app. Each Flow Steward project stores its own app credentials.\n\n**1. Register an app**\n\n- Sign in at https://dev.freeagent.com/ and open My Apps, then Create New App.\n- Add the callback URL that Flow Steward shows in the project OAuth setup as a redirect URI, exactly as shown.\n- Copy the OAuth identifier and OAuth secret.\n\n**2. Pick the environment**\n\n- Real books: use the provider \"FreeAgent\" and the connection type \"FreeAgent company\".\n- Testing: create a free sandbox company at https://signup.sandbox.freeagent.com/signup and finish its setup steps in the FreeAgent web app, then use \"FreeAgent sandbox\" and \"FreeAgent sandbox company\".\n- Sandbox URLs never work against production and the reverse; the extension refuses to mix them.\n\n**3. Connect**\n\n- Save the OAuth identifier and secret for the provider in this project.\n- Create a connection and approve access in FreeAgent. Flow Steward reads the company back to confirm it.\n- The extension can do what the approving FreeAgent user can do. Use a user with the access level your workflows need; reports, tax and payroll need \"Tax, Accounting and Users\" or Full Access.\n\n**Working with records**\n\n- FreeAgent refers to other records by URL, for example https://api.freeagent.com/v2/contacts/123. Inputs such as contact or project also accept the bare id.\n- data inputs hold the native FreeAgent fields without their wrapper: for create_invoice send the invoice fields, not {\"invoice\": ...}.\n- Record an invoice payment with create_bank_transaction_explanation and paid_invoice; a bill payment with paid_bill.\n- Marking VAT, corporation tax or final accounts as filed only records a status. Nothing is sent to HMRC or Companies House.\n- FreeAgent allows 120 requests per minute per user. List operations return next_page; all_pages fetches up to 5000 rows.\n\n**Safety**\n\n- Test Run suppresses every change and email.\n- Each connection can switch off creating, updating, deleting or emailing.\n- A write that times out is reported as uncertain. Check FreeAgent before running it again.\n- Tokens stay in Flow Steward. Never paste tokens or secrets into workflow inputs."
+    }
+  ]
+}

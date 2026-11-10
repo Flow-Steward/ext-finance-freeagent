@@ -1,0 +1,59 @@
+{
+  "skill_id": "freeagent_accounting_workflows",
+  "version": "0.1.0",
+  "display_name": "FreeAgent accounting workflows",
+  "description": "Plan FreeAgent bookkeeping, invoicing, banking and reporting workflows with the installed FreeAgent extension operations.",
+  "enabled": true,
+  "category": "finance",
+  "instructions": [
+    "Discover flowsteward.freeagent operations and their input schemas through the platform catalog before building a workflow.",
+    "Require an explicit FreeAgent connection_ref. Call get_company first to confirm the company, its currency and VAT status.",
+    "FreeAgent references records by URL (https://api.freeagent.com/v2/<resource>/<id>); carry the url field from earlier results into later inputs.",
+    "Pass data without the root wrapper and never invent required fields: obtain contact, category, bank account and dates from earlier steps or the user.",
+    "Money is a decimal string. Money out is negative on expenses, bank statement rows and most explanations.",
+    "Record invoice payments with create_bank_transaction_explanation using paid_invoice, bill payments with paid_bill, and transfers with transfer_bank_account.",
+    "Use list operations with from_date, to_date or updated_since and follow next_page, or set all_pages; never claim the first page is the full ledger.",
+    "For financial analysis use get_profit_and_loss, get_balance_sheet, get_trial_balance, list_accounting_transactions and get_cashflow; keep provider totals as returned.",
+    "Changes run through declared operations so the host owns external-effect claims and Test Run suppression. After an uncertain write, read the provider state before retrying.",
+    "Filing transitions only record a status in FreeAgent; they do not submit returns to HMRC or Companies House.",
+    "Pass files as platform artifact handles. Never pass local paths, tokens or download URLs."
+  ],
+  "expected_inputs": [
+    {
+      "name": "request",
+      "type": "paragraph",
+      "required": true,
+      "description": "The bookkeeping task, the FreeAgent connection, the period and any approved change."
+    }
+  ],
+  "expected_outputs": [
+    {
+      "name": "accounting_result",
+      "type": "text",
+      "required": true,
+      "description": "The plan or the verified FreeAgent result with record URLs, dates and amounts."
+    }
+  ],
+  "builder_metadata_jsonb": {
+    "purpose": "Use the installed FreeAgent operations accurately in accounting workflows.",
+    "use_cases": [
+      "invoice creation and chasing",
+      "bank statement import and reconciliation",
+      "expense and bill capture with receipts",
+      "management reports"
+    ],
+    "anti_use_cases": [
+      "HMRC or Companies House submission",
+      "moving money",
+      "unapproved accounting changes"
+    ],
+    "composition_role": "execution",
+    "determinism_level": "hybrid",
+    "safe_for_auto_use": false
+  },
+  "tags": [
+    "freeagent",
+    "accounting",
+    "workflow"
+  ]
+}

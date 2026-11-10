@@ -1,0 +1,3713 @@
+{
+  "forms": [
+    {
+      "operation_id": "get_company",
+      "title": "Get company",
+      "fields": []
+    },
+    {
+      "operation_id": "list_business_categories",
+      "title": "List business categories",
+      "fields": []
+    },
+    {
+      "operation_id": "get_tax_timeline",
+      "title": "Get tax timeline",
+      "fields": []
+    },
+    {
+      "operation_id": "get_current_user",
+      "title": "Get current user",
+      "fields": []
+    },
+    {
+      "operation_id": "list_users",
+      "title": "List users",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, staff, active_staff, advisors, active_advisors."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_user",
+      "title": "Get user",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_user",
+      "title": "Create user",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent user fields (without the user wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_user",
+      "title": "Update user",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent user fields (without the user wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_user",
+      "title": "Delete user",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_contacts",
+      "title": "List contacts",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. active, all, clients, suppliers, active_projects, completed_projects, hidden."
+        },
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: name, created_at, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_contact",
+      "title": "Get contact",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_contact",
+      "title": "Create contact",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent contact fields (without the contact wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_contact",
+      "title": "Update contact",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent contact fields (without the contact wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_contact",
+      "title": "Delete contact",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_projects",
+      "title": "List projects",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. active, completed, cancelled, hidden."
+        },
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: name, contact_name, created_at, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "nested",
+          "widget_type": "boolean",
+          "label": "Nested",
+          "required": false,
+          "help_text": "Include nested task details."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_project",
+      "title": "Get project",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_project",
+      "title": "Create project",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent project fields (without the project wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_project",
+      "title": "Update project",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent project fields (without the project wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_project",
+      "title": "Delete project",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_tasks",
+      "title": "List tasks",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, active, completed, hidden."
+        },
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: name, project, billing_rate, created_at, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_task",
+      "title": "Get task",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_task",
+      "title": "Create task",
+      "fields": [
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project *",
+          "required": true,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent task fields (without the task wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_task",
+      "title": "Update task",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent task fields (without the task wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_task",
+      "title": "Delete task",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_timeslips",
+      "title": "List timeslips",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, unbilled, running."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "user",
+          "widget_type": "text",
+          "label": "User",
+          "required": false,
+          "help_text": "FreeAgent users URL or numeric id."
+        },
+        {
+          "name": "task",
+          "widget_type": "text",
+          "label": "Task",
+          "required": false,
+          "help_text": "FreeAgent tasks URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "nested",
+          "widget_type": "boolean",
+          "label": "Nested",
+          "required": false,
+          "help_text": "Include nested user, task and project."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_timeslip",
+      "title": "Get timeslip",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_timeslip",
+      "title": "Create timeslip",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent timeslip fields (without the timeslip wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_timeslip",
+      "title": "Update timeslip",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent timeslip fields (without the timeslip wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_timeslip",
+      "title": "Delete timeslip",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "start_timeslip_timer",
+      "title": "Start timeslip timer",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "stop_timeslip_timer",
+      "title": "Stop timeslip timer",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_notes",
+      "title": "List notes",
+      "fields": [
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_note",
+      "title": "Get note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_note",
+      "title": "Create note",
+      "fields": [
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent note fields (without the note wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_note",
+      "title": "Update note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent note fields (without the note wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_note",
+      "title": "Delete note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_invoices",
+      "title": "List invoices",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, recent_open_or_overdue, open, overdue, open_or_overdue, draft, paid, scheduled_to_email, thank_you_emails, reminder_emails, last_3_months."
+        },
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: created_at, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "nested_invoice_items",
+          "widget_type": "boolean",
+          "label": "Nested invoice items",
+          "required": false,
+          "help_text": "Include invoice_items in every row."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_invoice",
+      "title": "Get invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_invoice",
+      "title": "Create invoice",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent invoice fields (without the invoice wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_invoice",
+      "title": "Update invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent invoice fields (without the invoice wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_invoice",
+      "title": "Delete invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_invoice_pdf",
+      "title": "Get invoice PDF",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "send_invoice_email",
+      "title": "Email invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "email",
+          "widget_type": "json",
+          "label": "Email *",
+          "required": true,
+          "help_text": "to, from, subject, body; or use_template."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_invoice",
+      "title": "Change invoice status",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_sent",
+              "value": "mark_as_sent"
+            },
+            {
+              "label": "mark_as_scheduled",
+              "value": "mark_as_scheduled"
+            },
+            {
+              "label": "mark_as_draft",
+              "value": "mark_as_draft"
+            },
+            {
+              "label": "mark_as_cancelled",
+              "value": "mark_as_cancelled"
+            },
+            {
+              "label": "convert_to_credit_note",
+              "value": "convert_to_credit_note"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "duplicate_invoice",
+      "title": "Duplicate invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_invoice_timeline",
+      "title": "Get invoice timeline",
+      "fields": []
+    },
+    {
+      "operation_id": "list_recurring_invoices",
+      "title": "List recurring invoices",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. draft, active, inactive."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_recurring_invoice",
+      "title": "Get recurring invoice",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_estimates",
+      "title": "List estimates",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, recent, draft, non_draft, sent, approved, rejected, invoiced."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "invoice",
+          "widget_type": "text",
+          "label": "Invoice",
+          "required": false,
+          "help_text": "FreeAgent invoices URL or numeric id."
+        },
+        {
+          "name": "nested_estimate_items",
+          "widget_type": "boolean",
+          "label": "Nested estimate items",
+          "required": false,
+          "help_text": "Include estimate_items in every row."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_estimate",
+      "title": "Get estimate",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_estimate",
+      "title": "Create estimate",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent estimate fields (without the estimate wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_estimate",
+      "title": "Update estimate",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent estimate fields (without the estimate wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_estimate",
+      "title": "Delete estimate",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_estimate_pdf",
+      "title": "Get estimate PDF",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "send_estimate_email",
+      "title": "Email estimate",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "email",
+          "widget_type": "json",
+          "label": "Email *",
+          "required": true,
+          "help_text": "to, from, subject, body; or use_template."
+        }
+      ]
+    },
+    {
+      "operation_id": "duplicate_estimate",
+      "title": "Duplicate estimate",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_estimate_item",
+      "title": "Add estimate item",
+      "fields": [
+        {
+          "name": "estimate",
+          "widget_type": "text",
+          "label": "Estimate *",
+          "required": true,
+          "help_text": "FreeAgent estimates URL or numeric id."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent estimate_item fields (without the estimate_item wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_estimate_item",
+      "title": "Update estimate item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent estimate_item fields (without the estimate_item wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_estimate_item",
+      "title": "Delete estimate item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_credit_notes",
+      "title": "List credit notes",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, recent_open_or_overdue, open, overdue, open_or_overdue, draft, refunded."
+        },
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: created_at, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "nested_credit_note_items",
+          "widget_type": "boolean",
+          "label": "Nested credit note items",
+          "required": false,
+          "help_text": "Include credit_note_items in every row."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_credit_note",
+      "title": "Get credit note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_credit_note",
+      "title": "Create credit note",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent credit_note fields (without the credit_note wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_credit_note",
+      "title": "Update credit note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent credit_note fields (without the credit_note wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_credit_note",
+      "title": "Delete credit note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_credit_note_pdf",
+      "title": "Get credit note PDF",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "send_credit_note_email",
+      "title": "Email credit note",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "email",
+          "widget_type": "json",
+          "label": "Email *",
+          "required": true,
+          "help_text": "to, from, subject, body; or use_template."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_credit_note",
+      "title": "Change credit note status",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_sent",
+              "value": "mark_as_sent"
+            },
+            {
+              "label": "mark_as_draft",
+              "value": "mark_as_draft"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "list_credit_note_reconciliations",
+      "title": "List credit note reconciliations",
+      "fields": [
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_credit_note_reconciliation",
+      "title": "Get credit note reconciliation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_credit_note_reconciliation",
+      "title": "Create credit note reconciliation",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent credit_note_reconciliation fields (without the credit_note_reconciliation wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_credit_note_reconciliation",
+      "title": "Update credit note reconciliation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent credit_note_reconciliation fields (without the credit_note_reconciliation wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_credit_note_reconciliation",
+      "title": "Delete credit note reconciliation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_price_list_items",
+      "title": "List price list items",
+      "fields": [
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: created_at, code, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_price_list_item",
+      "title": "Get price list item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_price_list_item",
+      "title": "Create price list item",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent price_list_item fields (without the price_list_item wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_price_list_item",
+      "title": "Update price list item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent price_list_item fields (without the price_list_item wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_price_list_item",
+      "title": "Delete price list item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bills",
+      "title": "List bills",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, open, overdue, open_or_overdue, paid, recurring, hire_purchase, cis."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "contact",
+          "widget_type": "text",
+          "label": "Contact",
+          "required": false,
+          "help_text": "FreeAgent contacts URL or numeric id."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "nested_bill_items",
+          "widget_type": "boolean",
+          "label": "Nested bill items",
+          "required": false,
+          "help_text": "Include bill_items in every row."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_bill",
+      "title": "Get bill",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_bill",
+      "title": "Create bill",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bill fields (without the bill wrapper)."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File",
+          "required": false,
+          "help_text": "File artifact from an earlier step."
+        },
+        {
+          "name": "attachment_file_name",
+          "widget_type": "text",
+          "label": "Attachment file name",
+          "required": false,
+          "help_text": "Receipt file name."
+        },
+        {
+          "name": "attachment_content_type",
+          "widget_type": "select",
+          "label": "Attachment content type",
+          "required": false,
+          "options": [
+            {
+              "label": "application/pdf",
+              "value": "application/pdf"
+            },
+            {
+              "label": "application/x-pdf",
+              "value": "application/x-pdf"
+            },
+            {
+              "label": "image/gif",
+              "value": "image/gif"
+            },
+            {
+              "label": "image/jpeg",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "image/jpg",
+              "value": "image/jpg"
+            },
+            {
+              "label": "image/png",
+              "value": "image/png"
+            },
+            {
+              "label": "image/x-png",
+              "value": "image/x-png"
+            }
+          ],
+          "help_text": "Receipt MIME type."
+        },
+        {
+          "name": "attachment_description",
+          "widget_type": "text",
+          "label": "Attachment description",
+          "required": false,
+          "help_text": "Optional description."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_bill",
+      "title": "Update bill",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bill fields (without the bill wrapper)."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File",
+          "required": false,
+          "help_text": "File artifact from an earlier step."
+        },
+        {
+          "name": "attachment_file_name",
+          "widget_type": "text",
+          "label": "Attachment file name",
+          "required": false,
+          "help_text": "Receipt file name."
+        },
+        {
+          "name": "attachment_content_type",
+          "widget_type": "select",
+          "label": "Attachment content type",
+          "required": false,
+          "options": [
+            {
+              "label": "application/pdf",
+              "value": "application/pdf"
+            },
+            {
+              "label": "application/x-pdf",
+              "value": "application/x-pdf"
+            },
+            {
+              "label": "image/gif",
+              "value": "image/gif"
+            },
+            {
+              "label": "image/jpeg",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "image/jpg",
+              "value": "image/jpg"
+            },
+            {
+              "label": "image/png",
+              "value": "image/png"
+            },
+            {
+              "label": "image/x-png",
+              "value": "image/x-png"
+            }
+          ],
+          "help_text": "Receipt MIME type."
+        },
+        {
+          "name": "attachment_description",
+          "widget_type": "text",
+          "label": "Attachment description",
+          "required": false,
+          "help_text": "Optional description."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_bill",
+      "title": "Delete bill",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_expenses",
+      "title": "List expenses",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. recent, recurring."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "project",
+          "widget_type": "text",
+          "label": "Project",
+          "required": false,
+          "help_text": "FreeAgent projects URL or numeric id."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_expense",
+      "title": "Get expense",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_expense",
+      "title": "Create expense",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent expense fields (without the expense wrapper)."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File",
+          "required": false,
+          "help_text": "File artifact from an earlier step."
+        },
+        {
+          "name": "attachment_file_name",
+          "widget_type": "text",
+          "label": "Attachment file name",
+          "required": false,
+          "help_text": "Receipt file name."
+        },
+        {
+          "name": "attachment_content_type",
+          "widget_type": "select",
+          "label": "Attachment content type",
+          "required": false,
+          "options": [
+            {
+              "label": "application/pdf",
+              "value": "application/pdf"
+            },
+            {
+              "label": "application/x-pdf",
+              "value": "application/x-pdf"
+            },
+            {
+              "label": "image/gif",
+              "value": "image/gif"
+            },
+            {
+              "label": "image/jpeg",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "image/jpg",
+              "value": "image/jpg"
+            },
+            {
+              "label": "image/png",
+              "value": "image/png"
+            },
+            {
+              "label": "image/x-png",
+              "value": "image/x-png"
+            }
+          ],
+          "help_text": "Receipt MIME type."
+        },
+        {
+          "name": "attachment_description",
+          "widget_type": "text",
+          "label": "Attachment description",
+          "required": false,
+          "help_text": "Optional description."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_expense",
+      "title": "Update expense",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent expense fields (without the expense wrapper)."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File",
+          "required": false,
+          "help_text": "File artifact from an earlier step."
+        },
+        {
+          "name": "attachment_file_name",
+          "widget_type": "text",
+          "label": "Attachment file name",
+          "required": false,
+          "help_text": "Receipt file name."
+        },
+        {
+          "name": "attachment_content_type",
+          "widget_type": "select",
+          "label": "Attachment content type",
+          "required": false,
+          "options": [
+            {
+              "label": "application/pdf",
+              "value": "application/pdf"
+            },
+            {
+              "label": "application/x-pdf",
+              "value": "application/x-pdf"
+            },
+            {
+              "label": "image/gif",
+              "value": "image/gif"
+            },
+            {
+              "label": "image/jpeg",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "image/jpg",
+              "value": "image/jpg"
+            },
+            {
+              "label": "image/png",
+              "value": "image/png"
+            },
+            {
+              "label": "image/x-png",
+              "value": "image/x-png"
+            }
+          ],
+          "help_text": "Receipt MIME type."
+        },
+        {
+          "name": "attachment_description",
+          "widget_type": "text",
+          "label": "Attachment description",
+          "required": false,
+          "help_text": "Optional description."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_expense",
+      "title": "Delete expense",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_mileage_settings",
+      "title": "Get mileage settings",
+      "fields": []
+    },
+    {
+      "operation_id": "list_stock_items",
+      "title": "List stock items",
+      "fields": [
+        {
+          "name": "sort",
+          "widget_type": "text",
+          "label": "Sort",
+          "required": false,
+          "help_text": "Sort field: created_at, description, updated_at. Prefix with - for descending order."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_stock_item",
+      "title": "Get stock item",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_capital_assets",
+      "title": "List capital assets",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, disposed, disposable."
+        },
+        {
+          "name": "include_history",
+          "widget_type": "boolean",
+          "label": "Include history",
+          "required": false,
+          "help_text": "Include asset history."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_capital_asset",
+      "title": "Get capital asset",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "include_history",
+          "widget_type": "boolean",
+          "label": "Include history",
+          "required": false,
+          "help_text": "Include asset history."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_capital_asset_types",
+      "title": "List capital asset types",
+      "fields": [
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_capital_asset_type",
+      "title": "Get capital asset type",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_capital_asset_type",
+      "title": "Create capital asset type",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent capital_asset_type fields (without the capital_asset_type wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_capital_asset_type",
+      "title": "Update capital asset type",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent capital_asset_type fields (without the capital_asset_type wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_capital_asset_type",
+      "title": "Delete capital asset type",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_hire_purchases",
+      "title": "List hire purchases",
+      "fields": [
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_hire_purchase",
+      "title": "Get hire purchase",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bank_accounts",
+      "title": "List bank accounts",
+      "fields": [
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. standard_bank_accounts, credit_card_accounts, paypal_accounts."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_bank_account",
+      "title": "Get bank account",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_bank_account",
+      "title": "Create bank account",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bank_account fields (without the bank_account wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_bank_account",
+      "title": "Update bank account",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bank_account fields (without the bank_account wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_bank_account",
+      "title": "Delete bank account",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bank_feeds",
+      "title": "List bank feeds",
+      "fields": [
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_bank_feed",
+      "title": "Get bank feed",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bank_transactions",
+      "title": "List bank transactions",
+      "fields": [
+        {
+          "name": "bank_account",
+          "widget_type": "text",
+          "label": "Bank account *",
+          "required": true,
+          "help_text": "FreeAgent bank_accounts URL or numeric id."
+        },
+        {
+          "name": "view",
+          "widget_type": "text",
+          "label": "View",
+          "required": false,
+          "help_text": "FreeAgent view filter, e.g. all, unexplained, explained, manual, imported, marked_for_review."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "last_uploaded",
+          "widget_type": "boolean",
+          "label": "Last uploaded",
+          "required": false,
+          "help_text": "Only transactions from the last statement upload."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_bank_transaction",
+      "title": "Get bank transaction",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_bank_transaction",
+      "title": "Delete bank transaction",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "upload_bank_statement",
+      "title": "Upload bank statement rows",
+      "fields": [
+        {
+          "name": "bank_account",
+          "widget_type": "text",
+          "label": "Bank account *",
+          "required": true,
+          "help_text": "FreeAgent bank_accounts URL or numeric id."
+        },
+        {
+          "name": "statement",
+          "widget_type": "json",
+          "label": "Statement *",
+          "required": true,
+          "help_text": "Rows with dated_on, amount and description."
+        }
+      ]
+    },
+    {
+      "operation_id": "upload_bank_statement_file",
+      "title": "Upload bank statement file",
+      "fields": [
+        {
+          "name": "bank_account",
+          "widget_type": "text",
+          "label": "Bank account *",
+          "required": true,
+          "help_text": "FreeAgent bank_accounts URL or numeric id."
+        },
+        {
+          "name": "file_name",
+          "widget_type": "text",
+          "label": "File name *",
+          "required": true,
+          "help_text": "Statement file name ending .ofx, .qif or .csv."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File *",
+          "required": true,
+          "help_text": "File artifact from an earlier step."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bank_transaction_explanations",
+      "title": "List bank transaction explanations",
+      "fields": [
+        {
+          "name": "bank_account",
+          "widget_type": "text",
+          "label": "Bank account *",
+          "required": true,
+          "help_text": "FreeAgent bank_accounts URL or numeric id."
+        },
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_bank_transaction_explanation",
+      "title": "Get bank transaction explanation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_bank_transaction_explanation",
+      "title": "Create bank transaction explanation",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bank_transaction_explanation fields (without the bank_transaction_explanation wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_bank_transaction_explanation",
+      "title": "Update bank transaction explanation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent bank_transaction_explanation fields (without the bank_transaction_explanation wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_bank_transaction_explanation",
+      "title": "Delete bank transaction explanation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_bank_transaction_explanation_attachments",
+      "title": "List explanation attachments",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "add_bank_transaction_explanation_attachment",
+      "title": "Attach receipt to explanation",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "file_name",
+          "widget_type": "text",
+          "label": "File name *",
+          "required": true,
+          "help_text": "File name shown in FreeAgent."
+        },
+        {
+          "name": "content_type",
+          "widget_type": "select",
+          "label": "Content type *",
+          "required": true,
+          "options": [
+            {
+              "label": "application/pdf",
+              "value": "application/pdf"
+            },
+            {
+              "label": "application/x-pdf",
+              "value": "application/x-pdf"
+            },
+            {
+              "label": "image/gif",
+              "value": "image/gif"
+            },
+            {
+              "label": "image/jpeg",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "image/jpg",
+              "value": "image/jpg"
+            },
+            {
+              "label": "image/png",
+              "value": "image/png"
+            },
+            {
+              "label": "image/x-png",
+              "value": "image/x-png"
+            }
+          ],
+          "help_text": "MIME type of the file."
+        },
+        {
+          "name": "description",
+          "widget_type": "text",
+          "label": "Description",
+          "required": false,
+          "help_text": "Optional description."
+        },
+        {
+          "name": "artifact_handle",
+          "widget_type": "text",
+          "label": "File *",
+          "required": true,
+          "help_text": "File artifact from an earlier step."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_bank_transaction_explanation_attachments",
+      "title": "Update explanation attachments",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent  fields (without the  wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_bank_transaction_explanation_attachments",
+      "title": "Remove all explanation attachments",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_attachment",
+      "title": "Get attachment",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_attachment",
+      "title": "Delete attachment",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_categories",
+      "title": "List categories",
+      "fields": [
+        {
+          "name": "sub_accounts",
+          "widget_type": "boolean",
+          "label": "Sub accounts",
+          "required": false,
+          "help_text": "Include sub-account categories."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_category",
+      "title": "Get category",
+      "fields": [
+        {
+          "name": "nominal_code",
+          "widget_type": "text",
+          "label": "Nominal code *",
+          "required": true,
+          "help_text": "Nominal code, e.g. 250 or 750-1."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_category",
+      "title": "Create category",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent category fields (without the category wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_category",
+      "title": "Update category",
+      "fields": [
+        {
+          "name": "nominal_code",
+          "widget_type": "text",
+          "label": "Nominal code *",
+          "required": true,
+          "help_text": "Nominal code, e.g. 250 or 750-1."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent category fields (without the category wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_category",
+      "title": "Delete category",
+      "fields": [
+        {
+          "name": "nominal_code",
+          "widget_type": "text",
+          "label": "Nominal code *",
+          "required": true,
+          "help_text": "Nominal code, e.g. 250 or 750-1."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_journal_sets",
+      "title": "List journal sets",
+      "fields": [
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "updated_since",
+          "widget_type": "datetime",
+          "label": "Updated since",
+          "required": false,
+          "help_text": "Only records changed after this ISO 8601 timestamp."
+        },
+        {
+          "name": "tag",
+          "widget_type": "text",
+          "label": "Tag",
+          "required": false,
+          "help_text": "Only sets with this tag."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_journal_set",
+      "title": "Get journal set",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_journal_set",
+      "title": "Create journal set",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent journal_set fields (without the journal_set wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_journal_set",
+      "title": "Update journal set",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent journal_set fields (without the journal_set wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_journal_set",
+      "title": "Delete journal set",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_journal_set_opening_balances",
+      "title": "Get opening balances journal",
+      "fields": []
+    },
+    {
+      "operation_id": "get_profit_and_loss",
+      "title": "Get profit and loss",
+      "fields": [
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "accounting_period",
+          "widget_type": "text",
+          "label": "Accounting period",
+          "required": false,
+          "help_text": "Accounting year, e.g. 2025/26."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_balance_sheet",
+      "title": "Get balance sheet",
+      "fields": [
+        {
+          "name": "as_at_date",
+          "widget_type": "date",
+          "label": "As at date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_balance_sheet_opening_balances",
+      "title": "Get opening balance sheet",
+      "fields": []
+    },
+    {
+      "operation_id": "get_trial_balance",
+      "title": "Get trial balance",
+      "fields": [
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_trial_balance_opening_balances",
+      "title": "Get opening trial balance",
+      "fields": []
+    },
+    {
+      "operation_id": "list_accounting_transactions",
+      "title": "List ledger transactions",
+      "fields": [
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date",
+          "required": false,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "nominal_code",
+          "widget_type": "text",
+          "label": "Nominal code",
+          "required": false,
+          "help_text": "Only lines for this nominal code."
+        },
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_accounting_transaction",
+      "title": "Get ledger transaction",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_cashflow",
+      "title": "Get cashflow",
+      "fields": [
+        {
+          "name": "from_date",
+          "widget_type": "date",
+          "label": "From date *",
+          "required": true,
+          "help_text": "YYYY-MM-DD."
+        },
+        {
+          "name": "to_date",
+          "widget_type": "date",
+          "label": "To date *",
+          "required": true,
+          "help_text": "YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_vat_returns",
+      "title": "List VAT returns",
+      "fields": []
+    },
+    {
+      "operation_id": "get_vat_return",
+      "title": "Get VAT return",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_vat_return",
+      "title": "Mark VAT return filed",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_filed",
+              "value": "mark_as_filed"
+            },
+            {
+              "label": "mark_as_unfiled",
+              "value": "mark_as_unfiled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_vat_return_payment",
+      "title": "Mark VAT payment paid",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        },
+        {
+          "name": "payment_date",
+          "widget_type": "date",
+          "label": "Payment date *",
+          "required": true,
+          "help_text": "Payment due date YYYY-MM-DD."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_paid",
+              "value": "mark_as_paid"
+            },
+            {
+              "label": "mark_as_unpaid",
+              "value": "mark_as_unpaid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "list_corporation_tax_returns",
+      "title": "List corporation tax returns",
+      "fields": []
+    },
+    {
+      "operation_id": "get_corporation_tax_return",
+      "title": "Get corporation tax return",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_corporation_tax_return",
+      "title": "Mark corporation tax return",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_filed",
+              "value": "mark_as_filed"
+            },
+            {
+              "label": "mark_as_unfiled",
+              "value": "mark_as_unfiled"
+            },
+            {
+              "label": "mark_as_paid",
+              "value": "mark_as_paid"
+            },
+            {
+              "label": "mark_as_unpaid",
+              "value": "mark_as_unpaid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "list_final_accounts_reports",
+      "title": "List final accounts",
+      "fields": []
+    },
+    {
+      "operation_id": "get_final_accounts_report",
+      "title": "Get final accounts",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_final_accounts_report",
+      "title": "Mark final accounts filed",
+      "fields": [
+        {
+          "name": "period_ends_on",
+          "widget_type": "date",
+          "label": "Period ends on *",
+          "required": true,
+          "help_text": "Period end date YYYY-MM-DD."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_filed",
+              "value": "mark_as_filed"
+            },
+            {
+              "label": "mark_as_unfiled",
+              "value": "mark_as_unfiled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "get_ec_moss_sales_tax_rates",
+      "title": "Get EU VAT MOSS rates",
+      "fields": [
+        {
+          "name": "country",
+          "widget_type": "text",
+          "label": "Country *",
+          "required": true,
+          "help_text": "EU member country name, e.g. Austria."
+        },
+        {
+          "name": "date",
+          "widget_type": "date",
+          "label": "Date *",
+          "required": true,
+          "help_text": "YYYY-MM-DD."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_sales_tax_periods",
+      "title": "List sales tax periods",
+      "fields": [
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_sales_tax_period",
+      "title": "Get sales tax period",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_sales_tax_period",
+      "title": "Create sales tax period",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent sales_tax_period fields (without the sales_tax_period wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_sales_tax_period",
+      "title": "Update sales tax period",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent sales_tax_period fields (without the sales_tax_period wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_sales_tax_period",
+      "title": "Delete sales tax period",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_payroll_year",
+      "title": "Get payroll year",
+      "fields": [
+        {
+          "name": "year",
+          "widget_type": "integer",
+          "label": "Year *",
+          "required": true,
+          "help_text": "Tax year end, e.g. 2026 for 2025/26."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_payroll_period",
+      "title": "Get payroll period",
+      "fields": [
+        {
+          "name": "year",
+          "widget_type": "integer",
+          "label": "Year *",
+          "required": true,
+          "help_text": "Tax year end, e.g. 2026 for 2025/26."
+        },
+        {
+          "name": "period",
+          "widget_type": "integer",
+          "label": "Period *",
+          "required": true,
+          "help_text": "Period 0-11."
+        }
+      ]
+    },
+    {
+      "operation_id": "transition_payroll_payment",
+      "title": "Mark payroll payment paid",
+      "fields": [
+        {
+          "name": "year",
+          "widget_type": "integer",
+          "label": "Year *",
+          "required": true,
+          "help_text": "Tax year end, e.g. 2026 for 2025/26."
+        },
+        {
+          "name": "payment_date",
+          "widget_type": "date",
+          "label": "Payment date *",
+          "required": true,
+          "help_text": "Payment date YYYY-MM-DD."
+        },
+        {
+          "name": "transition",
+          "widget_type": "select",
+          "label": "Transition *",
+          "required": true,
+          "options": [
+            {
+              "label": "mark_as_paid",
+              "value": "mark_as_paid"
+            },
+            {
+              "label": "mark_as_unpaid",
+              "value": "mark_as_unpaid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "operation_id": "list_payroll_profiles",
+      "title": "List payroll profiles",
+      "fields": [
+        {
+          "name": "year",
+          "widget_type": "integer",
+          "label": "Year *",
+          "required": true,
+          "help_text": "Tax year end, e.g. 2026 for 2025/26."
+        },
+        {
+          "name": "user",
+          "widget_type": "text",
+          "label": "User",
+          "required": false,
+          "help_text": "FreeAgent users URL or numeric id."
+        }
+      ]
+    },
+    {
+      "operation_id": "list_properties",
+      "title": "List propertys",
+      "fields": [
+        {
+          "name": "page",
+          "widget_type": "integer",
+          "label": "Page",
+          "required": false,
+          "help_text": "Page number, starting at 1."
+        },
+        {
+          "name": "per_page",
+          "widget_type": "integer",
+          "label": "Per page",
+          "required": false,
+          "help_text": "Rows per page (max 100)."
+        },
+        {
+          "name": "all_pages",
+          "widget_type": "boolean",
+          "label": "All pages",
+          "required": false,
+          "help_text": "Fetch every page (up to 50 pages of 100 rows). next_page is set when more remain."
+        }
+      ]
+    },
+    {
+      "operation_id": "get_property",
+      "title": "Get property",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    },
+    {
+      "operation_id": "create_property",
+      "title": "Create property",
+      "fields": [
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent property fields (without the property wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "update_property",
+      "title": "Update property",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        },
+        {
+          "name": "data",
+          "widget_type": "json",
+          "label": "Data *",
+          "required": true,
+          "help_text": "Native FreeAgent property fields (without the property wrapper)."
+        }
+      ]
+    },
+    {
+      "operation_id": "delete_property",
+      "title": "Delete property",
+      "fields": [
+        {
+          "name": "id",
+          "widget_type": "text",
+          "label": "Id *",
+          "required": true,
+          "help_text": "Numeric FreeAgent id or the resource URL."
+        }
+      ]
+    }
+  ]
+}

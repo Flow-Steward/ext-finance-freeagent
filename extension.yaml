@@ -1,0 +1,914 @@
+{
+  "manifest_version": 2,
+  "extension_id": "flowsteward.freeagent",
+  "kind": "tool_provider",
+  "version": "0.1.0",
+  "display_name": "FreeAgent",
+  "description": "FreeAgent accounting for UK small businesses: contacts, invoices, estimates, credit notes, bills, expenses, bank accounts, statements and explanations, journals, projects and time, profit and loss, balance sheet, trial balance, VAT, corporation tax and payroll records.",
+  "lifecycle": {
+    "data_schema_version": 1,
+    "data_migrations": []
+  },
+  "vendor": {
+    "name": "Flow Steward",
+    "support_url": "https://github.com/Flow-Steward/ext-finance-freeagent/issues",
+    "website_url": "https://github.com/Flow-Steward/ext-finance-freeagent"
+  },
+  "listing": {
+    "category": "finance",
+    "tags": [
+      "freeagent",
+      "accounting",
+      "bookkeeping",
+      "invoices",
+      "vat",
+      "uk"
+    ],
+    "summary": "Read and update FreeAgent invoices, bills, bank transactions, expenses and reports from your workflows."
+  },
+  "features": [
+    "tool",
+    "action"
+  ],
+  "required_scopes": [
+    "extension:invoke",
+    "artifact:read",
+    "artifact:write"
+  ],
+  "machine_auth": {
+    "service_account_key": "svc_ext_freeagent",
+    "required_scopes": [
+      "extension:invoke",
+      "artifact:read",
+      "artifact:write"
+    ]
+  },
+  "egress": {
+    "hosts": [
+      "api.freeagent.com",
+      "api.sandbox.freeagent.com"
+    ]
+  },
+  "account_scope": {
+    "scope_type": "project",
+    "description": "Each connection grants access to one FreeAgent company in one project."
+  },
+  "entrypoint": {
+    "mode": "subprocess",
+    "command": [
+      "python3",
+      "main.py"
+    ],
+    "timeout_seconds": 90
+  },
+  "health": {
+    "command": [
+      "python3",
+      "health.py"
+    ],
+    "timeout_seconds": 5
+  },
+  "ui_manifest": "ui/ui_manifest.yaml",
+  "action_manifest": "ui/actions/actions.yaml",
+  "python_requirements": [],
+  "runtime": {
+    "contract_version": "extension_host_v2",
+    "extension_contract_v2": {
+      "oauth_providers": [
+        {
+          "provider_id": "freeagent_oauth",
+          "display_name": "FreeAgent",
+          "description": "Authorize one FreeAgent production company with your own FreeAgent API app.",
+          "setup_page_id": "setup-guide",
+          "help_page_id": "setup-guide",
+          "flow": {
+            "type": "authorization_code",
+            "pkce": "none"
+          },
+          "credential_fields": [
+            {
+              "field_id": "client_id",
+              "value_type": "text",
+              "required": true,
+              "secret": false,
+              "change_policy": "reauthorization_required",
+              "label": "OAuth identifier",
+              "help_text": "OAuth identifier of your app at dev.freeagent.com (My Apps).",
+              "validation": {
+                "min_length": 1,
+                "max_length": 512
+              }
+            },
+            {
+              "field_id": "client_secret",
+              "value_type": "secret",
+              "required": true,
+              "secret": true,
+              "change_policy": "reauthorization_required",
+              "label": "OAuth secret",
+              "help_text": "OAuth secret of the same app; stored and used only by the platform.",
+              "validation": {
+                "min_length": 1,
+                "max_length": 4096
+              }
+            }
+          ],
+          "authorization_endpoint": {
+            "url": "https://api.freeagent.com/v2/approve_app"
+          },
+          "token_endpoint": {
+            "url": "https://api.freeagent.com/v2/token_endpoint",
+            "client_auth_method": "client_secret_basic"
+          },
+          "callback_id": "oauth_authorization",
+          "authorization_intents": [
+            {
+              "intent_id": "company_connect",
+              "static_parameters": {}
+            }
+          ],
+          "post_connect_action_id": "verify_company"
+        },
+        {
+          "provider_id": "freeagent_sandbox_oauth",
+          "display_name": "FreeAgent sandbox",
+          "description": "Authorize one FreeAgent sandbox company with your own FreeAgent API app.",
+          "setup_page_id": "setup-guide",
+          "help_page_id": "setup-guide",
+          "flow": {
+            "type": "authorization_code",
+            "pkce": "none"
+          },
+          "credential_fields": [
+            {
+              "field_id": "client_id",
+              "value_type": "text",
+              "required": true,
+              "secret": false,
+              "change_policy": "reauthorization_required",
+              "label": "OAuth identifier",
+              "help_text": "OAuth identifier of your app at dev.freeagent.com (My Apps).",
+              "validation": {
+                "min_length": 1,
+                "max_length": 512
+              }
+            },
+            {
+              "field_id": "client_secret",
+              "value_type": "secret",
+              "required": true,
+              "secret": true,
+              "change_policy": "reauthorization_required",
+              "label": "OAuth secret",
+              "help_text": "OAuth secret of the same app; stored and used only by the platform.",
+              "validation": {
+                "min_length": 1,
+                "max_length": 4096
+              }
+            }
+          ],
+          "authorization_endpoint": {
+            "url": "https://api.sandbox.freeagent.com/v2/approve_app"
+          },
+          "token_endpoint": {
+            "url": "https://api.sandbox.freeagent.com/v2/token_endpoint",
+            "client_auth_method": "client_secret_basic"
+          },
+          "callback_id": "oauth_authorization",
+          "authorization_intents": [
+            {
+              "intent_id": "company_connect",
+              "static_parameters": {}
+            }
+          ],
+          "post_connect_action_id": "verify_company"
+        }
+      ],
+      "connection_types": "contracts/connection_types.yaml",
+      "operation_manifest": "contracts/operation_manifest.yaml",
+      "step_ui_manifest": "contracts/step_ui_manifest.yaml"
+    }
+  },
+  "callbacks": [
+    {
+      "callback_id": "oauth_authorization",
+      "purpose": "oauth_authorization",
+      "methods": [
+        "GET"
+      ],
+      "connection_scoped": false
+    }
+  ],
+  "external_effects": [
+    {
+      "operation_id": "create_user",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_user",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_user",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_contact",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_contact",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_contact",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_project",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_project",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_project",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_task",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_task",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_task",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_timeslip",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_timeslip",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_timeslip",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "start_timeslip_timer",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "stop_timeslip_timer",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_invoice",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_invoice",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_invoice",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "send_invoice_email",
+      "effect_kind": "accounting_email",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_invoice",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "duplicate_invoice",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_estimate",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_estimate",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_estimate",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "send_estimate_email",
+      "effect_kind": "accounting_email",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "duplicate_estimate",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_estimate_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_estimate_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_estimate_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_credit_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_credit_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_credit_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "send_credit_note_email",
+      "effect_kind": "accounting_email",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_credit_note",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_credit_note_reconciliation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_credit_note_reconciliation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_credit_note_reconciliation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_price_list_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_price_list_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_price_list_item",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_bill",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_bill",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_bill",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_expense",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_expense",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_expense",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_capital_asset_type",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_capital_asset_type",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_capital_asset_type",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_bank_account",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_bank_account",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_bank_account",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_bank_transaction",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "upload_bank_statement",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "upload_bank_statement_file",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_bank_transaction_explanation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_bank_transaction_explanation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_bank_transaction_explanation",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "add_bank_transaction_explanation_attachment",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_bank_transaction_explanation_attachments",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_bank_transaction_explanation_attachments",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_attachment",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_category",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_category",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_category",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_journal_set",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_journal_set",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_journal_set",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_vat_return",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_vat_return_payment",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_corporation_tax_return",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_final_accounts_report",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_sales_tax_period",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_sales_tax_period",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_sales_tax_period",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "transition_payroll_payment",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "create_property",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "update_property",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    },
+    {
+      "operation_id": "delete_property",
+      "effect_kind": "accounting_write",
+      "channel": "freeagent",
+      "idempotency": "required",
+      "test_mode_behavior": "suppress"
+    }
+  ],
+  "artifact_policies": [
+    {
+      "operation_id": "get_invoice_pdf",
+      "outputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "pdf_artifact_handle",
+          "filename": "invoice.pdf",
+          "content_type": "application/pdf",
+          "max_size_bytes": 20971520,
+          "retention_class": "run_window"
+        }
+      ]
+    },
+    {
+      "operation_id": "get_estimate_pdf",
+      "outputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "pdf_artifact_handle",
+          "filename": "estimate.pdf",
+          "content_type": "application/pdf",
+          "max_size_bytes": 20971520,
+          "retention_class": "run_window"
+        }
+      ]
+    },
+    {
+      "operation_id": "get_credit_note_pdf",
+      "outputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "pdf_artifact_handle",
+          "filename": "credit_note.pdf",
+          "content_type": "application/pdf",
+          "max_size_bytes": 20971520,
+          "retention_class": "run_window"
+        }
+      ]
+    },
+    {
+      "operation_id": "create_bill",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": false,
+          "max_size_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "operation_id": "update_bill",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": false,
+          "max_size_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "operation_id": "create_expense",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": false,
+          "max_size_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "operation_id": "update_expense",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": false,
+          "max_size_bytes": 5242880
+        }
+      ]
+    },
+    {
+      "operation_id": "upload_bank_statement_file",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": true,
+          "max_size_bytes": 10485760
+        }
+      ]
+    },
+    {
+      "operation_id": "add_bank_transaction_explanation_attachment",
+      "inputs": [
+        {
+          "kind": "artifact",
+          "value_type": "artifact_handle",
+          "binding_key": "attachment_input",
+          "from_input": "artifact_handle",
+          "required": true,
+          "max_size_bytes": 5242880
+        }
+      ]
+    }
+  ]
+}
