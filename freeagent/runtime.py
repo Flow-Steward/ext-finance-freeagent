@@ -57,7 +57,8 @@ def handle(payload: dict[str, Any]) -> dict[str, Any]:
         raw_context = payload["runtime_context"]
         require(type(raw_context.get("test_mode", False)) is bool, "test_mode must be boolean.")
         action = payload.get("action")
-        require(isinstance(action, dict), "Invalid action.")
+        if not isinstance(action, dict):
+            raise Failure("invalid_payload", "Invalid action.")
         name = text(action.get("action_id"), 128, "action_id")
         require(name in OPERATIONS or name == VERIFY_ACTION, "Unknown FreeAgent operation.")
         args = action.get("input", {})

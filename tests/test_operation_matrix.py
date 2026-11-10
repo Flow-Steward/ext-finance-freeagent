@@ -55,7 +55,7 @@ def arguments(op: Operation) -> dict[str, Any]:
 
 
 def expected_path(op: Operation, args: dict[str, Any]) -> str:
-    return PROD + re.sub(r"\{([a-z_]+)\}", lambda m: str(args[m.group(1)]), op.path)
+    return PROD + re.sub(r"\{([a-z_]+)\}", lambda m: str(args[str(m.group(1))]), op.path)
 
 
 def provider_reply(op: Operation) -> Any:

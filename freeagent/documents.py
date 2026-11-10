@@ -107,11 +107,8 @@ def save_pdf(
 ) -> dict[str, Any]:
     pdf = value.get("pdf") if isinstance(value, dict) else None
     content = pdf.get("content") if isinstance(pdf, dict) else None
-    require(
-        isinstance(content, str) and content,
-        "FreeAgent returned no PDF.",
-        "invalid_provider_response",
-    )
+    if not isinstance(content, str) or not content:
+        raise Failure("invalid_provider_response", "FreeAgent returned no PDF.")
     try:
         raw = base64.b64decode(content, validate=True)
     except (binascii.Error, ValueError):

@@ -88,7 +88,7 @@ def _body(operation: Operation, args: dict[str, Any], host: str, key: str, kind:
         # Accept a body already wrapped in its FreeAgent root key.
         value = value[operation.body_root]
     require(
-        isinstance(value, kind) and len(value) > 0,
+        isinstance(value, kind) and bool(value),
         f"{key} must be a nonempty {'object' if kind is dict else 'array'}.",
     )
     bounded_json(value)
@@ -100,13 +100,14 @@ def _body(operation: Operation, args: dict[str, Any], host: str, key: str, kind:
 
 
 def prepare(operation: Operation, args: dict[str, Any], host: str) -> Plan:
-    declared = {param.name for param in operation.params} | {
-        "connection_ref",
-        "data",
-        "email",
-        "statement",
-        *ARTIFACT_INPUTS,
-    }
+    declared = {param.name for param in operation.params} | {"connection_ref"}
+    declared |= {"data": {"data"}, "estimate_item": {"data"}, "email": {"email"}}.get(
+        operation.body, {operation.body} if operation.body else set()
+    )
+    if operation.special == "inline_attachment":
+        declared |= set(ARTIFACT_INPUTS)
+    elif operation.special in ("explanation_attachment", "statement_file"):
+        declared.add("artifact_handle")
     unknown = sorted(set(args) - declared)
     require(not unknown, "Unknown input: " + ", ".join(unknown[:5]) + ".")
     path_values: dict[str, str] = {}
@@ -160,12 +161,6 @@ def prepare(operation: Operation, args: dict[str, Any], host: str) -> Plan:
             "estimate": query.pop("estimate"),
             "estimate_item": _body(operation, args, host, "data", dict),
         }
-    if operation.special != "inline_attachment":
-        stray = [name for name in ARTIFACT_INPUTS if args.get(name) not in (None, "")]
-        require(
-            operation.special in ("explanation_attachment", "statement_file") or not stray,
-            "This operation does not take a file.",
-        )
     if operation.paged and all_pages:
         query.pop("page", None)
         query["per_page"] = "100"
