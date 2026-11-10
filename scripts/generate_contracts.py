@@ -392,7 +392,10 @@ connection_types = [
         "auth": {
             "type": "oauth2",
             "provider_id": provider_id,
-            "scopes": {"required": [], "optional": []},
+            # FreeAgent defines no OAuth scopes and ignores the parameter; Core requires one
+            # required scope for authorization-code providers, so one name stands for
+            # "the authorising user's FreeAgent access".
+            "scopes": {"required": ["freeagent"], "optional": []},
         },
         "config_schema": CONFIG_SCHEMA,
         "secret_schema": {

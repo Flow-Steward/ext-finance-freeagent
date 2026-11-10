@@ -27,6 +27,8 @@ system for UK small businesses, through the public FreeAgent API v2.
    (`verify_company`) and shows its name.
 
 FreeAgent has no OAuth scopes: the connection can do what the approving FreeAgent user can do.
+Flow Steward requires one declared scope for an authorization-code provider, so the connection
+types declare `freeagent`; FreeAgent ignores the `scope` parameter.
 Reports, tax and payroll need the access level "Tax, Accounting and Users" or Full Access.
 
 Each connection has four switches, all on by default: `allow_create`, `allow_update`,

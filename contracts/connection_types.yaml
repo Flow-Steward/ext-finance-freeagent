@@ -8,7 +8,9 @@
         "type": "oauth2",
         "provider_id": "freeagent_oauth",
         "scopes": {
-          "required": [],
+          "required": [
+            "freeagent"
+          ],
           "optional": []
         }
       },
@@ -226,7 +228,9 @@
         "type": "oauth2",
         "provider_id": "freeagent_sandbox_oauth",
         "scopes": {
-          "required": [],
+          "required": [
+            "freeagent"
+          ],
           "optional": []
         }
       },
