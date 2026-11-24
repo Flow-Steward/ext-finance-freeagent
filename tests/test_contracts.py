@@ -20,6 +20,7 @@ GENERATED = [
     "ui/actions/actions.yaml",
     "ui/ui_manifest.yaml",
     "ui/pages/setup-guide.yaml",
+    "ui/pages/support.yaml",
     "artifacts/skills/freeagent_accounting_workflows.yaml",
 ]
 

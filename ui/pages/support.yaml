@@ -1,0 +1,14 @@
+{
+  "page_id": "support",
+  "title": "Support",
+  "description": "Get help with the Flow Steward FreeAgent extension.",
+  "project_scoped": false,
+  "components": [
+    {
+      "component_id": "freeagent_support",
+      "type": "markdown",
+      "title": "Get help with the FreeAgent extension",
+      "body": "- [Browse existing issues](https://github.com/Flow-Steward/ext-finance-freeagent/issues)\n- [Report a problem or request a feature](https://github.com/Flow-Steward/ext-finance-freeagent/issues/new/choose)\n\nInclude your Flow Steward and extension versions, the affected operation, and the error message. Remove tokens and accounting data before posting."
+    }
+  ]
+}

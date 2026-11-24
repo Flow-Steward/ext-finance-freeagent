@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "extension_id": "flowsteward.freeagent",
   "kind": "tool_provider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "display_name": "FreeAgent",
   "description": "FreeAgent accounting for UK small businesses: contacts, invoices, estimates, credit notes, bills, expenses, bank accounts, statements and explanations, journals, projects and time, profit and loss, balance sheet, trial balance, VAT, corporation tax and payroll records.",
   "lifecycle": {

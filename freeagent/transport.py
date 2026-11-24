@@ -16,7 +16,7 @@ from flowsteward_extension_sdk import open_pinned_url, parse_retry_after, resolv
 from freeagent.catalog import API_VERSION
 from freeagent.validation import RESULT_LIMIT, Failure, require
 
-USER_AGENT = "FlowSteward-FreeAgent-Extension/0.1.0"
+USER_AGENT = "FlowSteward-FreeAgent-Extension/0.1.1"
 ERROR_LIMIT = 32 * 1024
 READ_CHUNK = 64 * 1024
 MAX_RATE_LIMIT_WAIT = 10.0

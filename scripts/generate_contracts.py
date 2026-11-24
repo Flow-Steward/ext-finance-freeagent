@@ -24,7 +24,7 @@ from freeagent.catalog import (  # noqa: E402
 from freeagent.validation import ATTACHMENT_TYPES  # noqa: E402
 
 EXTENSION_ID = "flowsteward.freeagent"
-VERSION = "0.1.0"
+VERSION = "0.1.1"
 DISPLAY_NAME = "FreeAgent"
 DESCRIPTION = (
     "FreeAgent accounting for UK small businesses: contacts, invoices, estimates, credit notes, "
@@ -595,7 +595,35 @@ dump(
         "lifecycle": manifest["lifecycle"],
     },
 )
-dump("ui/ui_manifest.yaml", {"version": "1", "pages": [{"ref": "pages/setup-guide.yaml"}]})
+dump(
+    "ui/ui_manifest.yaml",
+    {
+        "version": "1",
+        "pages": [{"ref": "pages/setup-guide.yaml"}, {"ref": "pages/support.yaml"}],
+    },
+)
+dump(
+    "ui/pages/support.yaml",
+    {
+        "page_id": "support",
+        "title": "Support",
+        "description": "Get help with the Flow Steward FreeAgent extension.",
+        "project_scoped": False,
+        "components": [
+            {
+                "component_id": "freeagent_support",
+                "type": "markdown",
+                "title": "Get help with the FreeAgent extension",
+                "body": (
+                    f"- [Browse existing issues]({REPOSITORY}/issues)\n"
+                    f"- [Report a problem or request a feature]({REPOSITORY}/issues/new/choose)\n\n"
+                    "Include your Flow Steward and extension versions, the affected operation, "
+                    "and the error message. Remove tokens and accounting data before posting."
+                ),
+            }
+        ],
+    },
+)
 dump(
     "ui/pages/setup-guide.yaml",
     {

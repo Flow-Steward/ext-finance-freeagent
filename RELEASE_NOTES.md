@@ -1,6 +1,7 @@
-# FreeAgent 0.1.0
+# FreeAgent 0.1.1
 
-First release of the FreeAgent accounting extension for Flow Steward.
+First Marketplace release of the FreeAgent accounting extension for Flow Steward.
+The Support tab links to the issue tracker and explains what to include in a report.
 
 - 166 operations over the FreeAgent company API v2: sales, purchases, banking, accounting,
   reports, tax and payroll records.
