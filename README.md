@@ -3,6 +3,9 @@
 Connects Flow Steward workflows to [FreeAgent](https://www.freeagent.com/), the accounting
 system for UK small businesses, through the public FreeAgent API v2.
 
+> **Early release.** Live FreeAgent testing is pending. Use a sandbox company to evaluate
+> the integration.
+
 - Extension id: `flowsteward.freeagent`
 - 166 operations over the company API: contacts, projects, tasks, timeslips, notes, invoices,
   recurring invoices, estimates, credit notes and reconciliations, price list, bills, expenses

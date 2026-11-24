@@ -10,5 +10,5 @@ First release of the FreeAgent accounting extension for Flow Steward.
 - Test Run suppresses every change and email; per-connection switches for create, update,
   delete and email.
 
-Not yet verified against a live FreeAgent company. Uses the standard Flow Steward icon until
-the official FreeAgent logo is cleared for publication.
+**Early release.** Live FreeAgent testing is pending. Use a sandbox company to evaluate
+the integration.

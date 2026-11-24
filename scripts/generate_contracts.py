@@ -432,8 +432,8 @@ manifest = {
     "listing": {
         "category": "finance",
         "tags": ["freeagent", "accounting", "bookkeeping", "invoices", "vat", "uk"],
-        "summary": "Read and update FreeAgent invoices, bills, bank transactions, expenses and "
-        "reports from your workflows.",
+        "summary": "Early release. Live FreeAgent testing is pending. Connect invoices, bills, "
+        "bank transactions, expenses and reports to your workflows.",
     },
     "features": ["tool", "action"],
     "required_scopes": ["extension:invoke", "artifact:read", "artifact:write"],

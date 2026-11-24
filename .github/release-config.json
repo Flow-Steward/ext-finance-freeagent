@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "extension_id": "flowsteward.freeagent",
+  "runtime_targets": [""],
+  "test_requirements": [],
+  "test_paths": ["tests"],
+  "additional_assets": ["RELEASE_NOTES.md"],
+  "notes_file": "RELEASE_NOTES.md"
+}

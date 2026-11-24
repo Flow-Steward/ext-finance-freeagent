@@ -1,14 +1,14 @@
-# Icon
+# FreeAgent artwork
 
-This development release uses the standard Flow Steward extension icon, copied unchanged from
-the QuickBooks Online extension (`Flow-Steward/ext-finance-quickbooks`, `icon.png`), which in
-turn copied it from `Flow-Steward/ext-email-imap`.
+The extension uses the official FreeAgent Full Colour Mark for small icons. The original
+PNG is packaged byte-for-byte. No resizing, padding, recoloring, or conversion was applied.
 
-SHA-256: `e81950a8b57d2ae07b8210045363fd082f537614c09fb8c7df0252f55d2d4bf5`.
+- [FreeAgent brand assets and usage guidelines](https://www.freeagent.com/en/company/branding/)
+- [Official Full Colour Mark archive](https://freeagent-res.cloudinary.com/raw/upload/website-downloads/branding/freeagent-brand-assets__mark--full-colour.zip)
+- Archive member: `freeagent-brand-assets__mark--full-colour/FreeAgent_Icon_F_Wings_Positive_0069bf.png`
+- Source PNG and bundled `icon.png` SHA-256: `1f8398dce1efec7f2348b8d68c483d8f42825354815b489a985e8106a86ae4a8`
 
-It is Flow Steward artwork, not a FreeAgent logo. Before catalog publication the
-Extension Publication Standard requires FreeAgent's official logo with its source, hashes and
-usage terms recorded here.
-
-FreeAgent is a trademark of FreeAgent Central Ltd. This independently developed integration is
-not endorsed by FreeAgent. The product name identifies the integrated service only.
+FreeAgent's guidelines allow this mark for icons and require its colors and proportions to
+be preserved without modification. They prohibit use on physical merchandise.
+FreeAgent is a trademark of FreeAgent Central Ltd. Flow Steward develops and supports this
+independent integration.
