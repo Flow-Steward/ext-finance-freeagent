@@ -24,7 +24,9 @@ from freeagent.catalog import (  # noqa: E402
 from freeagent.validation import ATTACHMENT_TYPES  # noqa: E402
 
 EXTENSION_ID = "flowsteward.freeagent"
-VERSION = "0.1.1"
+VERSION = "0.1.2"
+# Flow Steward extension host contract both the manifest and the descriptor declare.
+HOST_CONTRACT_VERSION = "extension_host_v2"
 DISPLAY_NAME = "FreeAgent"
 DESCRIPTION = (
     "FreeAgent accounting for UK small businesses: contacts, invoices, estimates, credit notes, "
@@ -451,7 +453,7 @@ manifest = {
     "ui_manifest": "ui/ui_manifest.yaml",
     "action_manifest": "ui/actions/actions.yaml",
     "python_requirements": [],
-    "runtime": {"contract_version": "extension_host_v2", "extension_contract_v2": contract_v2},
+    "runtime": {"contract_version": HOST_CONTRACT_VERSION, "extension_contract_v2": contract_v2},
     "callbacks": [
         {
             "callback_id": "oauth_authorization",
@@ -591,7 +593,13 @@ dump(
             "requires_connected_control_plane": False,
             "import_sources": ["file"],
         },
-        "runtime": manifest["runtime"],
+        # Only the host contract version: the executable contract (operations, OAuth
+        # providers and the callback they use) comes from extension.yaml. A descriptor
+        # that carries its own extension_contract_v2 is validated on install without
+        # extension.yaml's callbacks, and Flow Steward refuses it ("OAuth callback
+        # 'oauth_authorization' is not declared"). Without it the host takes the bundle's
+        # contract (descriptor_bundle_runtime._merged_runtime_descriptor).
+        "runtime": {"contract_version": HOST_CONTRACT_VERSION},
         "lifecycle": manifest["lifecycle"],
     },
 )

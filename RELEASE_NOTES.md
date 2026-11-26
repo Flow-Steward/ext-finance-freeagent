@@ -1,15 +1,8 @@
-# FreeAgent 0.1.1
+# FreeAgent 0.1.2
 
-First Marketplace release of the FreeAgent accounting extension for Flow Steward.
-The Support tab links to the issue tracker and explains what to include in a report.
+- The extension installs from the Flow Steward catalog and from a release archive again.
+  The extension descriptor now takes its operations, OAuth providers and OAuth callback
+  from the extension manifest, so the install check finds everything it references.
+- A test checks every file the host validates on its own for undeclared OAuth callbacks.
 
-- 166 operations over the FreeAgent company API v2: sales, purchases, banking, accounting,
-  reports, tax and payroll records.
-- Production and sandbox companies, each with its own OAuth provider and connection type.
-- Invoice, estimate and credit note PDFs as artifacts; receipts and bank statement files from
-  artifacts.
-- Test Run suppresses every change and email; per-connection switches for create, update,
-  delete and email.
-
-**Early release.** Live FreeAgent testing is pending. Use a sandbox company to evaluate
-the integration.
+No change to operations, connections or settings: existing workflows keep working.
